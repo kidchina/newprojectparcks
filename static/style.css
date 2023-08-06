@@ -1,0 +1,25 @@
+.input-container {
+    position: relative;
+  }
+  
+  
+  .input-container .icon {
+    position: absolute;
+    top: 50%;
+    right: 17px;
+    transform: translateY(-50%);
+    font-size: 24px; /* Adjust the size as needed */
+    color: #333; /* Default color of the icon */
+    cursor: pointer; /* Show the hand cursor on hover */
+    transition: color 0.2s;
+} 
+
+
+/* Hover effect: Change the color when the user hovers over the icon */
+.input-container .icon:hover {
+  color: #ff0000; /* Adjust the color to the desired impressive color */
+}
+
+   
+  
+  

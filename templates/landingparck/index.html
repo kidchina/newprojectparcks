@@ -1,0 +1,442 @@
+{%extends 'base.html'%}
+		<body>
+			{% load static %}
+    {% block content %}
+	<div id="fullpage">
+<section class="section">
+			  <header id="header" id="home">
+			    <div class="container">
+			    	<div class="row align-items-center justify-content-between d-flex">
+						<div id="logo" >
+							<a href="{% url 'index' %}">
+								<img src="{% static 'img/amzbrid-light.png' %}"  />
+							</a>
+						</div>
+				      <nav id="nav-menu-container" >
+						<ul class="nav-menu">
+						  <li class="menu-active"><a href="{% url 'index' %}">Home</a></li>
+						  <li><a href="about-us.html">About Us</a></li>
+						  <li><a href="category.html">Services</a></li>
+						  <li><a href="contact.html">Contact</a></li>
+						</ul>
+					  </nav>
+					  <!-- #nav-menu-container -->		    		
+			    	</div>
+			    </div>
+			  </header>
+			  <!-- #header -->
+
+			 
+			<!-- start banner Area -->
+			<section class="banner-area relative" id="home"  >	
+       
+        <div class="container">
+          <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="banner-content col-lg-12">
+              <h1 class="text-white">Find your nearest Car Parks</h1>	
+				<form
+				action="{% url 'locate' %}"
+				method="get"
+				class="search-form-area"
+			  >
+                <div class="row justify-content-center form-wrap">
+                  <div class="input-container">
+                    <input type="text" class="form-control px-4 input-field" placeholder="Enter your destination address" id="search_input">
+                  
+						<i class="fas fa-location-dot icon" id="iconloc" onclick="getlocation()"></i>
+                  </div>
+                  
+                  
+                  
+                  <div class="col-lg-2 form-cols">
+                    <!-- Add the "custom-btn" class to the button element -->
+				<button type="submit" class="btn btn-primary custom-btn">Search</button>
+
+					<br>
+					<input
+					type="text"
+					id = "latitude"
+					name = "latitude"
+					hidden
+				  />
+				  <input
+					type="text"
+					id = "longitude"
+					name = "longitude"
+					hidden
+				  />
+                  </div>								
+                </div>
+              </form>	
+             
+            </div>											
+          </div>
+        </div>
+      </section>
+      
+      
+			<!-- End banner Area -->	
+
+			<!-- Start features Area -->
+			<section class="features-area " >
+        <div class="container">
+          <div class="row justify-content-center align-items-center"> <!-- Added align-items-center class -->
+            <div class="col-lg-3 col-md-6 align-self-stretch">
+              <div class="single-feature d-flex flex-column">
+                <div>
+                  <h2 style="margin-bottom: 20px;"><i class="fa-solid fa-location-crosshairs fa-lg"></i></h2>
+                </div>
+                <h4>Your Location</h4>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 align-self-stretch">
+              <div class="single-feature d-flex flex-column">
+                <h2 style="margin-bottom: 10px;"><i class="fas fa-check-circle"></i></h2>
+                <h4 style="margin-top: 10px;">   Available <br>car parks near you</h4>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 align-self-stretch">
+              <div class="single-feature d-flex flex-column">
+                <h2 style="margin-bottom: 10px;"><i class="fas fa-info-circle"></i></h2>
+                <h4 style="margin-top: 10px;">Car parks details</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+	</section>   
+	  <style>
+		/* CSS for the sidebar and job post container */
+		.sidebar-section {
+		  display: flex;
+		  justify-content: center;
+		}
+	  
+		.single-slidebar {
+		  margin-bottom: 30px;
+		  width: 12cm; /* Increased width for the slidebars */
+		  padding: 0 10px; /* Add some padding to create distance between sidebars */
+		  box-sizing: border-box; /* Include padding in width calculation */
+		  border: 1px solid #ddd; /* Border color */
+		  border-radius: 5px; /* Rounded corners */
+		  box-shadow:0px 0px 40px 0px rgba(132, 144, 255, 0.2);
+		  background-color: white;
+		  height: 9.7cm;
+		  /* Box shadow */
+		   /* Background color */
+		}
+	  
+		.single-rated {
+		  /* Your existing styles for the individual divs */
+		  padding: 10px;
+		  height: 10cm; /* Reduced height for the slidebars */
+		}
+	  
+		/* Clearfix for content after the sidebars */
+		.clearfix::after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+	  
+		/* Optional: To add space between sidebars and the top/bottom of the container */
+		.post-area {
+		  max-height: 22cm; /* Set the maximum height to avoid vertical scrollbar */
+		  overflow-x: auto; /* Enable horizontal scrolling if needed */
+		  padding: 28px 0;
+		  margin-top: -22px;
+		 
+	/* Set the background image to not repeat */
+ 		
+		}
+
+	  
+		/* Set the distance between sidebars to approximately 3 cm */
+		.single-slidebar:nth-child(2n) {
+		  margin-left: 3cm; /* 3 cm space between slidebars */
+		}
+	  
+		.methodf {
+		  text-align: center;
+		  font-size: 15px;
+		}
+	  
+		/* Style for the images inside slidebars */
+		.single-rated img {
+		  width: 100%; /* Make the images responsive within the slidebars */
+		  height: auto; /* Let the height adjust automatically based on the image size */
+		  object-fit: cover; /* Maintain image aspect ratio */
+		  border-radius: 5px; /* Rounded corners for the images */
+		  margin-bottom: 10px; /* Add some space between image and content */
+		}
+		.centered-div {
+		  text-align: center;
+		  margin-top: 1.7cm;
+		  
+		}
+		.centered-div h4{
+			font-size: 25px;
+		}
+		.centered-p{
+			text-align: center;
+			margin-bottom: 1cm;
+
+		}
+		.methodf{
+					text-align: center;
+					font-size: 15px;
+				}
+		.parks_description-area{
+		max-height: 22cm; /* Set the maximum height to avoid vertical scrollbar */
+		  overflow-x: auto; /* Enable horizontal scrolling if needed */
+		  padding: 3cm 0;
+		  height: 30cm;
+		  margin-top: -2.7cm;
+		}
+		
+		.stok{
+			margin-top: 1cm;
+		}
+		.card_img{
+			height: 5cm;
+			width: 15cm;
+		}
+	  </style>
+	  
+	  <section class="post-area section">
+		<div class="centered-div">
+			<h4>Discover Nearby Car Parks: How Can You Find Them?</h4>
+		  </div>
+		  <br>
+		  <div class="centered-p">
+			<p>
+			  Are you looking for convenient and hassle-free ways to locate nearby car parks?<br>
+				Our website offers two efficient methods to help you find the perfect parking spot.
+			</p>
+		  </div>
+		<div class="container">
+		  <div class="sidebar-section">
+			<div class="single-slidebar">
+			  <h1 style="height: 0.5cm;"></h1>
+			  <div class="single-rated">
+				<!-- Job post content for the first sidebar -->
+				<img class="img-fluid" src="{% static 'img/fastwrite.gif' %}" style="height: 4cm;" alt="">
+				<a href="single.html"><h4 class="methodf">Method 1: Interactive Destination Entry</h4></a>
+				
+				<p>			
+				  Say goodbye to typing full addresses! With this method, simply start typing your destination, 
+				  and our smart system will continue suggesting options based on what you've written.
+				  Similar to Google Maps, our website provides real-time suggestions,
+				  making it easier for you to find the ideal car park closest to your desired location.
+				</p>
+				
+			  </div>
+			</div>
+	  
+			<div class="single-slidebar">
+			  <h1 style="height: 0.5cm;"></h1>
+			  <div class="single-rated">
+				<!-- Job post content for the second sidebar -->
+				<img class="img-fluid" src="{% static 'img/locateicon.gif' %}" style="height: 4cm;" alt="">
+				<a href="single.html"><h4 class="methodf">Method 2: One-Click Location Detection</h4></a>
+				
+				<p>
+				  For those who prefer a seamless approach, we offer the second method:
+				  a one-click location detection feature. Just click on the designated icon, 
+				  and our website will pinpoint your current location accurately. 
+				  This way, you can effortlessly explore nearby car parks without the need for manual input.
+				</p>
+				
+			  </div>
+			</div>
+		</section>
+	  
+		  <!-- Add the clearfix after the sidebars -->
+		
+<section class="section">
+	  <div class="container">
+		<div class="parks_description-area">
+			<div class="centered-div hbt">
+				<h4>Discover your ideal parking effortlessly with our website.</h4>
+			</div>
+			<div class="content-wrapper">
+				<div class="image-container">
+					<img src="{% static 'img/cards_img.png' %}" class="card_img" alt="">
+				</div>
+				<div class="text-container">
+					<p>
+						These images showcase the cards featuring various car parks with their
+						essential information such as names, rates, addresses, durations,
+						and distances from your location. Explore these examples to get a glimpse
+						of the user-friendly interface that simplifies your parking experience.
+						iniha inihaha
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</div>
+	<style>
+		.hbt{
+			margin-top: 0.7cm;
+		}
+	.content-wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 1cm;
+	}
+	
+	.image-container {
+		flex: 1;
+		padding-right: 20px;
+	}
+	
+	.card_img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 8px;
+		
+	}
+	
+	.text-container {
+		flex: 1;
+		padding-left: 20px;
+	}
+	
+	.text-container p {
+		font-size: 16px;
+		line-height: 1.6;
+		color: #333;
+	}
+	</style>
+
+
+			
+			
+    <!-- Content below the sidebars goes here -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Google Maps JavaScript library AIzaSyCuga0rxBnch_BCzWW1NA8WJdrTcvdfbpo-->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCuga0rxBnch_BCzWW1NA8WJdrTcvdfbpo" ></script>
+
+<script>
+
+    new fullpage('#fullpage', {
+        autoScrolling: true,
+        scrollHorizontally: true,
+        // Add more options as needed
+    });
+
+
+
+  var searchInput = 'search_input';
+   
+  $(document).ready(function () {
+   var autocomplete;
+   autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+    types: ['geocode'],
+    
+   });
+    
+   google.maps.event.addListener(autocomplete, 'place_changed', function () {
+    var near_place = autocomplete.getPlace();
+    var autocompleted = document.getElementById(searchInput).value ; 
+    // data upload
+    document.getElementById('latitude').value = near_place.geometry.location.lat() ; 
+    document.getElementById('longitude').value = near_place.geometry.location.lng() ; 
+
+   });
+   const apiKey = 'AIzaSyCuga0rxBnch_BCzWW1NA8WJdrTcvdfbpo';
+
+// Get the input field and add an event listener
+const inputField = document.getElementById('search_input');
+//inputField.addEventListener('change', geocodeAddress);
+
+// Geocode the address
+function geocodeAddress() {
+  const address = inputField.value;
+  const apiKey = 'AIzaSyBmWCdJsMcQeiSWcVrvx9dyJ1wKxQCp6xE';
+  console.log(address);
+  // Construct the Geocoding API request URL
+  const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+  console.log(apiUrl); 
+  // Send the API request
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Handle the API response
+      const results = data.results;
+      if (results && results.length > 0) {
+        // Extract the latitude and longitude
+        const location = results[0].geometry.location;
+        const latitude = location.lat;
+        const longitude = location.lng;
+
+        // Use the latitude and longitude values as needed
+        //initMap(latitude,longitude);
+        console.log('Latitude:', latitude);
+        console.log('Longitude:', longitude);
+        document.getElementById('latitude').value = latitude ; 
+        document.getElementById('longitude').value = longitude ; 
+
+       
+      } else {
+        console.log('No results found');
+      }
+    })
+    .catch(error => {
+      console.log('Error occurred:', error);
+    });
+}
+  });
+  var getlocation = () =>{ 
+      if (navigator.geolocation){
+          navigator.geolocation.getCurrentPosition((position) => {
+              var lat =  position.coords.latitude  ; 
+              var long = position.coords.longitude ; 
+              document.getElementById('latitude').value = lat ; 
+              document.getElementById('longitude').value = long ; 
+              convertCoordinatesToAddress(lat, long);
+
+          })
+      }
+  
+      else{
+          alert('try again '); 
+      }
+  }
+
+
+  function convertCoordinatesToAddress(latitude, longitude) {
+  var geocoder = new google.maps.Geocoder();
+  var latLng = new google.maps.LatLng(latitude, longitude);
+
+  geocoder.geocode({ 'latLng': latLng }, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      if (results[0]) {
+        var address = results[0].formatted_address;
+        console.log(address) ; 
+        document.getElementById('search_input').value = address;
+      } else {
+        console.log('No results found');
+      }
+    } else {
+      console.log('Geocoder failed due to: ' + status);
+    }
+  });
+}
+
+
+
+  </script>
+			
+			
+      {% endblock content %}
+			<!-- End download Area -->
+		
+			<!-- start footer Area -->		
+		
